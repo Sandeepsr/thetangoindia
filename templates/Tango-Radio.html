@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Tango-Radio{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="Tango-Radio" %}
+{% endblock %}
+
+{% block container %}
+
+<div id="sec1" class="jumbotron">
+	<div class="container">
+    <div class="row">      
+      <div class="col-md-12 text-center">
+       <h1 <strong>Listen to Argentine Tango Music</strong> </h1>  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="sec2" class="jumbotron">
+  <div class="container">
+      <div class="row">
+      <div class="col-md-12 " >
+      <hr>
+      <h6><font size="3">Argentine Tango Radio's plugin for your listening pleasure!. Click on button to play"</font></h6>
+      <hr>
+	  <center>
+      <iframe src="http://play.argentinetangoradio.com" style="width:160px;height:80px;" scrolling="no" frameborder="no"></iframe>
+	  </center>
+      </div>
+	   </div>
+      <hr>
+	  	  <p>Credits : argentinetangoradio.com</p>
+    </div>
+ </div>
+
+
+
+{% endblock container %}

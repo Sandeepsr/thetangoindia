@@ -1,0 +1,5 @@
+<li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">Home</a></li>
+<li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">About</a></li>
+<li {% if active_link == "Events" %}class="active"{% endif %}><a href="{% url 'Tango-Events' %}">Events</a></li>
+<li {% if active_link == "Tango Essentials" %}class="active"{% endif %}><a href="{% url 'Tango-Essentials' %}">Tango Essentials</a></li>
+<li {% if active_link == "Tango Radio" %}class="active"{% endif %}><a href="{% url 'Tango-Radio' %}">Tango Radio</a></li>

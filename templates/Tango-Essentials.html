@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Tango-Essentials{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="TangoEssentials" %}
+{% endblock %}
+
+{% block container %}
+
+<div id="sec1" class="jumbotron">
+	<div class="container">
+    <div class="row">      
+      <div class="col-md-12 text-center">
+       <h1 <strong>Tango Basic Vocabulary</strong> </h1>  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="sec2" class="jumbotron">
+  <div class="container">
+      <div class="row">      
+      <div class="col-md-12 " >
+      <div>
+      <p><font face="Verdana" size="5" color="green">You have questions, but you are afraid that they are too basic to ask. Well, be afraid no more. We  will answer your most basic questions here. If you have more questions or disagree with a definition, send us an email and we  will try to address it.</font></p>
+      <hr>
+      <hr>
+      <h5><font size="5"><strong>Line Of Dance</strong></font></h5>
+      <hr>
+      <p>Argentine Tango is a "traveling dance" that moves around the room, as opposed to a "slot dance"  -  salsa or swing, for example  -  which generally moves back and forth across a stationary spot on the floor. Tango travels around the room in a contra-clockwise direction. From the lead's perspective, this is your forward direction when your left shoulder is closer to the center of the room and your right shoulder is closer to the closest edge of the dance floor.</p>
+      <p>Social etiquette and practicality govern the speed of the dancers around the floor. Although you are dancing as a couple, you are also dancing with everyone else in the room. Don't race around the floor, cutting in and out of traffic; don't stop to admire your pose or polish your shoes, holding up everyone behind you; and don't dance opposite to the line of dance. Dance always in harmony with the music, or in harmonious counter-point; dance with an awareness of everything, without panic; dance with the profundity and simplicity of Life.</p>
+      <hr>
+      <h5><font size="5"><strong>Milonga</strong></font></h5>
+      <hr>
+      <p>A "milonga" is the tango dance party ("Let's go to the milonga!") where one can dance tango, milonga, and vals, as well as the name of a specific dance genre ("Will you milonga with me?"). This is somewhat similar to going to "the symphony" to hear them play a concerto, a symphony, or an excerpt from an opera. Music is usually organized into tandas, but this can depend on the DJ and the particular venue.</p>
+      <hr>
+      <h5><font size="5"><strong>Practica</strong></font></h5>
+      <hr>     
+      <p>A practica is a "practice session", where the theoretical is converted into the practical. You are encouraged to stop and work out a particular step or move, repeating it until you perfect it, or to talk and ask questions while dancing  -  things you don't do during a "real" milonga. Formalities are generally more relaxed at a practica - women frequently ask men to dance, and music does not necessarily follow the tanda format. However, just because someone dances with you at a practica does not mean they are obligated to dance with you at a milonga. Don't be shy about asking for feedback here.</p>
+      <hr>      
+      <h5><font size="5"><strong>Tanda</strong></font></h5>
+      <hr>
+      <p>A tanda  -  "batch"  -  is a set of three to five musical selections of similar character, usually from the same orchestra or time period. Grouping music this way makes it easier to choose an appropriate dance partner or to take a breather, because not all dancers are equally adept in all styles. It is expected that you dance at least three of the selections of a tanda with the same partner, unless you feel uncomfortable for any reason. It typically takes at least the first song just to adjust to dancing with someone, even if you've danced with them previously. Remember to thank your dance partner when you are through dancing.</p>
+      <hr>      
+      <h5><font size="5"><strong>Cortina</strong></font></h5>
+      <hr>
+      <p>A cortina  -  "curtain"  -  is a brief selection of non-tango music that signals the end of a tanda. All dancers are encouraged to leave the floor to find a new partner to dance the next tanda with (after hearing what kind of music it will be, which orchestra, etc., of course).</p>
+      <hr>      
+      <h5><font size="5"><strong>"Thank You"</strong></font></h5>
+      <hr>
+      <p>A simple "thank you" at the end of a piece from either the lead or the follow is "code" for "Thank you, I would like to stop dancing now." It could mean "Thanks, I'm tired, but let's dance again sometime" or "Thanks, that was interesting.. but let's never do it again." You  will know. Don't take it too personally, but do honor it. Don't say it unless you are done dancing for this tanda. Always be polite.</p>
+      <hr>
+      <p>The cabeceo  -  "nod of the head"  -  is short for mirada/cabeceo. The mirada  -  "a glance/eye contact"  -  is the educated way to ask for a dance, the cabeceo the educated way to accept. If both parties agree, they nod their heads in mutual acceptance of the invitation, if either party does not wish to dance with the other at this time, a nod is not given or the eye contact is avoided. This saves both parties from being rude or being pressured into an unwanted dance.</p>
+      </div>
+       <p>Credits : allseattletango.com</p>
+      </div>
+   </div>
+  </div>
+</div>
+
+
+<div id="sec2" class="jumbotron">
+  <div class="container">
+      <div class="row">
+      <div class="col-md-12 " >
+      <hr>
+      <h6><font size="5"><strong>"You might want to get started here with tango basics from howcast.."</strong></font></h6>
+      <hr>  
+       <div class="embed-responsive embed-responsive-16by9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/e1pVKbftp4s" frameborder="0" allowfullscreen></iframe>  
+      </div>
+      <hr>   
+        <h6><font size="5"><strong>"Some of the great learning resources that I like on Youtube might interest you. Channel: tangostudent"</strong></font></h6>
+      <hr>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/oECxrSVjkqw" frameborder="0" allowfullscreen></iframe>
+        </div>
+      <hr>
+      <h6><font size="5"><strong>"Learning with some fun!!. Improve floor craft on tango dance-floors - Murat and Michelle"</strong></font></h6>
+      <hr>
+      <div class="embed-responsive embed-responsive-16by9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/mDJs-71f5dk" frameborder="0" allowfullscreen></iframe> 
+       </div>
+      <hr>
+
+  </div>
+</div>
+
+
+{% endblock container %}

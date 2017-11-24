@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Past Tango Events-milonga-workshop-classes in India{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="Event" %}
+{% endblock %}
+
+{% block container %}
+
+<div id="sec1" class="jumbotron" >
+   <div class="container">
+     <div class="row">      
+      <div class="col-md-12 text-center">
+        <h1 class="lead">Past Tango Events/Milongas/Practicas </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="sec2" class="jumbotron">
+  <div class="container">
+    <div class="row">      
+      <div class="col-md-12 text-center" >
+         <h3><strong><mark>Past Events from Facebook Tango Communities </mark></strong></h3><br>
+          <div class="fb-like" data-href="http://thetangoindia.in/Tango-Events" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            <hr>
+             <p><a class="btn btn-primary" href="{% url 'Tango-Events' %}" role="button">Click To See Upcoming Events &raquo;</a></p>
+             <hr>
+            {% if PastEvents %}
+                <ul> 
+                    {% for event in PastEvents %}
+                    <div class="well"
+                        <h3><strong>Name : </strong>{{ event.Event_Name }}</h3>
+                        <p>Location : {{ event.Location_Name }}</p><br/>
+                        <p>Description : {{ event.Description }}</p><br/>
+                        <img class="img-responsive center-block" src="{{event.Cover}}"/>,
+                        <p>Start_Time : {{ event.Start_Time }}</p>
+                        <p>End_Time : {{ event.End_Time }}</p> <p>Venue : {{ event.Place }}</p>
+                        <p> Last Updated : {{ event.Updated_Time }}</p><p><a href="{{event.Event_Link }}" target="_blank"><strong>Facebook Link</strong></a></p><br/>
+                        <p>Attending_Count : {{ event.Attending_Count }}</p>
+                        <br/>
+                        <hr>
+                     </div>
+                    {% empty %}
+                         <li> No Past Events foudn coudld be error on our side.</li>  
+                    {% endfor %}
+                 </ul>
+            {% else %}
+                <strong>No Past Events foudn coudld be error on our side.</strong>
+            {% endif %}
+      </div>
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+{% endblock container %}

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Tango Pune{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="Event" %}
+{% endblock %}
+
+
+
+{% block container %}
+
+
+<div id="sec1" class="jumbotron" >
+   <div class="container">
+     <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="lead"> Tango In Pune </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="table-responsive">
+      <table class="table table-striped ">
+        {% if object_list %}
+            <tbody>
+                <tr>
+                  <th scope="row"</th>
+                  <td> <strong>Place</strong></td>
+                  <td>{{ object_list.category }}</td>
+                <tr>
+                <tr>
+                  <th scope="row"</th>         
+                  <td>Description</td>
+                  <td>{{ object_list.description }}</td>
+                </tr>
+                
+            
+                <tr>
+                  <th scope="row"</th>
+                  <td>Email</td>
+                  <td>{{ object_list.email }}</td>
+                <tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Contact Numbers</td>
+                  <td>{{ object_list.contact_number }}</td>
+                </tr>
+                
+                
+                <tr>
+                  <th scope="row"</th>
+                  <td>Website</td>
+                  <td>{{ object_list.website }}</td>
+                <tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Facebook Page</td>
+                  <td><a href="{{ object_list.fb_url }}" target="_blank"><strong>FaceBook Page Link</strong></a></td>
+                </tr>
+                
+                
+                <tr>
+                  <th scope="row"</th>
+                  <td>Class Location</td>
+                  <td>{{ object_list.class_location }}</td>
+                <tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>CLass Location MAP</td>
+                  <td><a href="{{ object_list.class_location_map }}" target="_blank"><strong>Click Here MAP Link</strong></a></td>
+                </tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>CLass Timings</td>
+                  <td>{{ object_list.class_timings }}</td>
+                </tr>                
+                
+                <tr>
+                  <th scope="row"</th>
+                  <td>Practica Venue</td>
+                  <td>{{ object_list.practica_venue }}</td>
+                <tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Practica Time</td>
+                  <td>{{ object_list.practica_time }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Practica Venue MAP Link</td>
+                  <td><a href="{{ object_list.practica_venue_map_link }}" target="_blank"><strong>Click Here for MAP</strong></a></td>
+                </tr>            
+                
+                <tr>
+                  <th scope="row"</th>
+                  <td>Instructor</td>
+                  <td>{{ object_list.instructor_name }}</td>
+                <tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Milonga Venue</td>
+                  <td>{{ object_list.milonga_venue }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Milonga Timings</td>
+                  <td>{{ object_list.milonga_time }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"</th>
+                  <td>Milonga Venue MAP Link</td>
+                  <td><a href="{{ object_list.milonga_venue_map_link }}" target="_blank"><strong>Click Here for MAP</strong></a></td>
+                </tr> 
+                <tr>
+                  <th scope="row"</th>
+                  <td>Admission Process for Class</td>
+                  <td>{{ object_list.admission_process }}</td>
+                <tr>                
+                
+            </tbody>
+            
+        {% else %}
+           <strong>We are having some technical trouble.... please visit again after some time.</strong>
+        {% endif %}
+     </table>
+   </div>
+</div>
+
+<div class="container">
+     <div class="row">
+      <p> Suggest edit/correction or feedback to thetangoindia@gmail.com.If you are admin of Above Tango COmmunity, register and request for admin rights to edit this page! </p> <a href="http://thetangoin
+dia.in/signup/" target="_blank"><strong>Click Here To Register</strong></a>
+  </div>
+</div>
+{% endblock container %}

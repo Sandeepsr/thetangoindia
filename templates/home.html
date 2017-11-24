@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Home{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="home" %}
+{% endblock %}
+
+{% block navbar-right %}
+  {% if not user.is_authenticated %}
+<a class="btn btn-default" href="{% url 'accounts:login' %}" role="button">Log in</a>
+<a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Sign up</a>
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
+{% block splash %}
+  <div class="jumbotron jumbotron-carousel corporate-jumbo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+          <h1>{% include "_brandname.html" %}</h1>
+          <p>Everything about Argentine Tango in India - Places, events, workshops, classes. This picture is from Holi Tango Festival - Auroville, India</p>
+	  <a class="btn btn-primary" href="{% url 'Tango-Events' %}" role="button">See Events Posted By Tango Communities!</a>
+        </div>
+        <div class="col-md-4 col-sm-4">
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock splash %}
+
+{% block container %}
+<!-- Benefits of the Django application -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Tango Hyderabad</h2>
+      <p>Find Info about Tango in Hyderabad. </p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Hyderabad' %}" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Tango Bangalore</h2>
+      <p>Find Info about Tango in Bangalore. </p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Bangalore' %}" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Tango New Delhi</h2>
+      <p>Find Info about Tango in New Delhi.</p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Delhi' %}" role="button">View details &raquo;</a></p>
+    </div>
+		<div class="col-lg-4">
+      <h2>Tango Mumbai</h2>
+      <p>Find Info about Tango in Mumbai</p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Mumbai' %}" role="button">View details &raquo;</a></p>
+    </div>
+		<div class="col-lg-4">
+      <h2>Tango Auroville</h2>
+      <p>Find Info about Tango in Auroville-Pondicherry</p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Auroville-Pondicherry' %}" role="button">View details &raquo;</a></p>
+    </div>
+		<div class="col-lg-4">
+      <h2>Tango Chennai</h2>
+      <p>Find Info about Tango in Chennai</p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Chennai' %}" role="button">View details &raquo;</a></p>
+    </div>
+		<div class="col-lg-4">
+      <h2>Tango Pune</h2>
+      <p>Find Info about Tango in Pune</p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Pune' %}" role="button">View details &raquo;</a></p>
+    </div>
+		<div class="col-lg-4">
+      <h2>Tango El Cabeceo</h2>
+      <p>Find Info about Tango El Cabeceo - Bangalore </p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Bangalore-El-Cabeceo' %}" role="button">View details &raquo;</a></p>
+    </div>
+		 <div class="col-lg-4">
+      <h2>BTangoConscious - Mumbai</h2>
+      <p>Find Info about BTangoConscious - Mumbai </p>
+      <p><a class="btn btn-primary" href="{% url 'Tango-In-Mumbai-BTangoConscious' %}" role="button">View details &raquo;</a></p>
+    </div>
+		
+  </div>
+</div>
+
+
+
+{% endblock container %}
+
+{% block scripts %}
+<script src="{% static 'site/js/site.js' %}"></script>
+{% endblock scripts %}
+

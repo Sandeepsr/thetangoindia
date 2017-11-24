@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Tango Events-milonga-workshop-classes in India{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="Event" %}
+{% endblock %}
+
+{% block container %}
+
+<div id="sec1" class="jumbotron" >
+   <div class="container">
+     <div class="row">      
+      <div class="col-md-12 text-center">
+        <h1 class="lead"> Tango Events/Milongas/Practicas </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="sec2" class="jumbotron">
+  <div class="container">
+    <div class="row">      
+      <div class="col-md-12 text-center" >
+         <h3><strong><mark>Events coming up in next 15 days! </mark></strong></h3><br>
+          <div class="fb-like" data-href="http://thetangoindia.in/Tango-Events" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+             <hr>
+            {% if Next2weeks %}
+                <ul> 
+                    {% for event in Next2weeks %}
+                    <div class="well"
+                        <h3><strong>Name : </strong>{{ event.Event_Name }}</h3>
+                        <p>Description : {{ event.Description }}</p><br/>
+                        <img class="img-responsive center-block" src="{{event.Cover}}"/>,
+                        <p>Location ID : {{ event.Location }}</p> <p>Event ID : {{ event.Event_Id }}</p>
+                        <p>Start_Time : {{ event.Start_Time }}</p>
+                        <p>End_Time : {{ event.End_Time }}</p> <p>Place : {{ event.Place }}</p>
+                        <p> Last Updated : {{ event.Updated_Time }}</p><p><a href="{{event.Event_Link }}" target="_blank"><strong>Facebook Link</strong></a></p><br/>
+                        <p>Attending_Count : {{ event.Attending_Count }}</p>
+                        <br/>
+                        <hr>
+                     </div>
+                    {% empty %}
+                         <li> No Events coming up in next 15 days.</li>  
+                    {% endfor %}
+                 </ul>
+            {% else %}
+                <strong>No Events coming up in next 15 days.</strong>
+            {% endif %}
+      </div>
+    </div>
+  <hr>
+  <hr>
+  <hr>
+  <hr>
+    <div class="container">
+    <div class="row">      
+      <div class="col-md-12 text-center" >
+         <h3><strong><mark>Future Events coming up after 15 Days! </mark></strong></h3><br>
+            {% if FutureEvents %}
+                <ul> 
+                    {% for event in FutureEvents %}
+                    <div class="well"
+                        <h3><strong>Name : </strong>{{ event.Event_Name }}</h3>
+                        <p>Description : {{ event.Description }}</p><br/>
+                        <img class="img-responsive center-block" src="{{event.Cover}}"/>,
+                        <p>Location ID : {{ event.Location }}</p> <p>Event ID : {{ event.Event_Id }}</p>
+                        <p>Start_Time : {{ event.Start_Time }}</p>
+                        <p>End_Time : {{ event.End_Time }}</p> <p>Place : {{ event.Place }}</p>
+                        <p> Last Updated : {{ event.Updated_Time }}</p><p><a href="{{event.Event_Link }}" target="_blank"><strong>Facebook Link</strong></a></p><br/>
+                        <p>Attending_Count : {{ event.Attending_Count }}</p>
+                        <br/>
+                        <hr>
+                     </div>
+                    {% empty %}
+                         <li> No Events </li>  
+                    {% endfor %}
+                 </ul>
+            {% else %}
+                <strong>No Events found could be server side issue!</strong>
+            {% endif %}
+      </div>
+    </div>
+  <hr>
+  <hr>
+  <hr>
+  <hr>
+    <div class="container">
+    <div class="row">      
+      <div class="col-md-12 text-center" >
+         <h3><strong><mark>Past Events !</mark></strong></h3><br>
+            {% if PastEvents %}
+                <ul> 
+                    {% for event in PastEvents %}
+                    <div class="well"
+                        <h3><strong>Name : </strong>{{ event.Event_Name }}</h3>
+                        <p>Description : {{ event.Description }}</p><br/>
+                        <img class="img-responsive center-block" src="{{event.Cover}}"/>,
+                        <p>Location ID : {{ event.Location }}</p> <p>Event ID : {{ event.Event_Id }}</p>
+                        <p>Start_Time : {{ event.Start_Time }}</p>
+                        <p>End_Time : {{ event.End_Time }}</p> <p>Place : {{ event.Place }}</p>
+                        <p> Last Updated : {{ event.Updated_Time }}</p><p><a href="{{event.Event_Link }}" target="_blank"><strong>Facebook Link</strong></a></p><br/>
+                        <p>Attending_Count : {{ event.Attending_Count }}</p>
+                        <br/>
+                        <hr>
+                     </div>
+                    {% empty %}
+                         <li> No Events </li>  
+                    {% endfor %}
+                 </ul>
+            {% else %}
+                <strong>No Events found could be server side issue!</strong>
+            {% endif %}
+      </div>
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+{% endblock container %}
