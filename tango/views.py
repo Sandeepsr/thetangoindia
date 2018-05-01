@@ -114,5 +114,8 @@ class TangoRadio(generic.TemplateView):
 class TangoSitemap(generic.TemplateView):
     template_name = "sitemap_location.xml"
 
+class LegalTC(generic.TemplateView):
+    template_name = "legal.html"
+
 #class BannerPage(generic.TemplateView):
     #template_name = "banner.jpg"
