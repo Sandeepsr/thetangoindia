@@ -12,7 +12,6 @@ import os
 from os.path import join, exists
 import datetime
 from os import environ
-import environ
 
 sys.path.append(SITE_PKG_PATH)
 environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango.settings.production')
@@ -33,6 +32,7 @@ sincet = lastmonth.strftime("%Y-%m-%d")
 logger.info("Stat date of script: {}".format(today))
 
 # Use 12factor inspired environment variables or from a file
+import environ
 env = environ.Env()
 
 # Ideally move env file should be outside the git repo
