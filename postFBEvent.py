@@ -25,7 +25,7 @@ from profiles.models import FBLocation, FBEvents
 
 
 tango_location = {'264587550321500':'Hyderabad', '527770257327317':'Bangalore', '1636178923304872':'Mumbai', '100006844149398':'Chennai', '197346010313291':'Auroville-Pondichery',
-'305372292817505':'Pune','107857822580692' :'Mumbai Tango', '1099207956812482': 'Bangalore - Elcabeco' , '7213847061':'NewDelhi - 2 To Tango','291047664345550':'NDTS-New Delhi Tango School','1513486182213415':'Mumbai - BTangoConscious'}
+'305372292817505':'Pune','107857822580692' :'Mumbai Tango', '1099207956812482': 'Bangalore - Elcabeco' , '7213847061':'NewDelhi - 2 To Tango','291047664345550':'NDTS-New Delhi Tango School','1513486182213415':'Mumbai - BTangoConscious','244450719272677':'Goa Tango Community'}
 
 #print (str(datetime.date.today()))
 today = datetime.date.today()

@@ -27,12 +27,12 @@ from profiles.models import FBLocation, FBEvents
 
 
 tango_location = {'264587550321500':'Hyderabad', '527770257327317':'Bangalore', '1636178923304872':'Mumbai', '100006844149398':'Chennai', '197346010313291':'Auroville-Pondichery',
-'305372292817505':'Pune','107857822580692' :'Mumbai Tango', '1099207956812482': 'Bangalore - Elcabeco' , '7213847061':'NewDelhi - 2 To Tango','291047664345550':'NDTS-New Delhi Tango School','1513486182213415':'Mumbai - BTangoConscious'}
+'305372292817505':'Pune','107857822580692' :'Mumbai Tango', '1099207956812482': 'Bangalore - Elcabeco' , '7213847061':'NewDelhi - 2 To Tango','291047664345550':'NDTS-New Delhi Tango School','1513486182213415':'Mumbai - BTangoConscious', '244450719272677':'Goa Tango Community'}
 
 #print (str(datetime.date.today()))
 today = datetime.date.today()
 first = today.replace(day=1)
-lastmonth = first - datetime.timedelta(days=63)
+lastmonth = first - datetime.timedelta(days=33)
 sincet = lastmonth.strftime("%Y-%m-%d")
 print (today)
 # Use 12factor inspired environment variables or from a file
@@ -68,25 +68,30 @@ def user_friendly_time(time_str):
 
 
 def get_events(user):
-    events = list()
-    graph = facebook.GraphAPI(ACCESS_TOKEN)
-    profile = graph.get_object(user)
-    posts = graph.get_connections(profile['id'],'events',fields='id,attending_count,cover,description,end_time,start_time,name,place,updated_time',since=sincet)
-    #print(posts)
-    while True:
-        try:
-            # Perform some action on each post in the collection we receive from
-            # Facebook.
-            for post in posts['data']:
-                events.append(post)
-            # Attempt to make a request to the next page of data, if it exists.
-            posts = requests.get(posts['paging']['next']).json()
-        except KeyError:
-            # When there are no more pages (['paging']['next']), break from the
-            # loop and end the script.
-            break
-    return events
-
+    try:
+        events = list()
+        print("Getting events...")
+        graph = facebook.GraphAPI(ACCESS_TOKEN)
+        profile = graph.get_object(user)
+        posts = graph.get_connections(profile['id'],'events',fields='id,attending_count,cover,description,end_time,start_time,name,place,updated_time',since=sincet)
+        #print(posts)
+        while True:
+            try:
+                # Perform some action on each post in the collection we receive from
+                # Facebook.
+                for post in posts['data']:
+                    events.append(post)
+                # Attempt to make a request to the next page of data, if it exists.
+                posts = requests.get(posts['paging']['next']).json()
+            except KeyError:
+                # When there are no more pages (['paging']['next']), break from the
+                # loop and end the script.
+                break
+        return events
+    except Exception as e:
+        print("Failure getting event data :", e)
+        pass
+        
 
 def getexisting_EL():
     dpost_id= list()
@@ -123,6 +128,8 @@ def delete_event(Event_Id):
 def post_events(location_name,post_name,picture,description,start_time,end_time,event_link,place):
     graph = facebook.GraphAPI(ACCESS_TOKEN)
     graph_tiin = facebook.GraphAPI(P_ACCESS_TOKEN_TIIN)
+    #print(ACCESS_TOKEN)
+    #print(P_ACCESS_TOKEN_TIIN)
     thetangoindia_fb_grp = "1743007585978030" #thetangoindia FB group 
     #thetangoindia_fb_page = "334065376933472" #thetangoindia FB Page
     #tangoinindia = "1542666775825337"
@@ -136,14 +143,14 @@ def post_events(location_name,post_name,picture,description,start_time,end_time,
         graph_tiin.put_object(parent_object=tango_in_india, connection_name='feed', message=msg, link=event_link)
         print ("Posted a new Event in  :: tango_in_india ")
     except Exception as e:
-        print("Exception while posting new event to tango_in_india FB page", e)
+        print("Exception while posting new event to tango_in_india FB page", location_name, e, event_link)
         pass
  
     try:
         graph.put_object(parent_object=thetangoindia_fb_grp, connection_name='feed', message=msg, link=event_link)
         print ("Posted a new Event in :: thetangoindia_fb_grp")
     except Exception as e:
-        print("Exception while posting new event to thetangoindia_fb_grp", e)
+        print("Exception while posting new event to thetangoindia_fb_grp", location_name, e, event_link)
         pass
 
         
@@ -157,27 +164,28 @@ def add_event_helper(pageid, events, e_id, location_get, d_loc=None, loc_name=No
         picture='NA' if "cover" not in event.keys() else event["cover"]["source"]
         post_id=event["id"]
         description='Tango' if 'description' not in event.keys() else event["description"]
-        attending_count=event["attending_count"]
+        #attending_count=event["attending_count"]
         start_time=event["start_time"]
         end_time= event["start_time"] if 'end_time' not in event.keys() else event["end_time"]
         event_link = 'https://www.facebook.com/events/{}'.format(event["id"]) if "event_link" not in event.keys() else event["id"]
         place=' Check description for details..' if 'place' not in event.keys() else '# {}'.format(event["place"]["name"])            
         
         if event["id"] in e_id:
-            print ('Duplicate..Event..deleting and re-addding {}'.format(event["id"]))
+            print ('Duplicate..Event..deleting and re-addding {}, {}, {}'.format(location_name, start_time, event["id"]))
             delete_event(event["id"])
-            add_event(loc=loc, location_name=location_name,updated_time=updated_time,post_name=post_name,picture=picture,post_id=post_id,
-             description=description,attending_count=attending_count,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
-            #if event["id"]  == '1447371168706065':
-             #   post_events(location_name=location_name,post_name=post_name,picture=picture,description=description,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
-              #  sys.exit()
+            add_event(loc=loc, location_name=place,updated_time=updated_time,post_name=post_name,picture=picture,post_id=post_id,
+             description=description,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
+            #if event["id"]  == '2324579304275132' or event['id'] == '920226871646597':
+                #post_events(location_name=location_name,post_name=post_name,picture=picture,description=description,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
+                #sys.exit()
         else:
-            print ('New Event... NOT Duplicate..Event..added.. {}'.format(event["id"]))
-            add_event(loc=loc, location_name=location_name,updated_time=updated_time,post_name=post_name,picture=picture,post_id=post_id,
-                                         description=description,attending_count=attending_count,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
-            post_events(location_name=location_name,post_name=post_name,picture=picture,description=description,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
+            print ('New Event... NOT Duplicate..Event..added.. {}, {}, {}'.format(location_name, start_time, event["id"]))
+            #changed location_name due to some bug TODO
+            add_event(loc=loc, location_name=place,updated_time=updated_time,post_name=post_name,picture=picture,post_id=post_id,
+                                         description=description,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
+            post_events(location_name=place,post_name=post_name,picture=picture,description=description,start_time=start_time,end_time=end_time,event_link=event_link,place=place)
 
-            
+        
 def populate(pageid,events,d_loc,e_id):
     if pageid in d_loc:
         location_get = get_location(pageid)
@@ -192,11 +200,10 @@ def populate(pageid,events,d_loc,e_id):
 
         
 
-def add_event(loc,location_name,updated_time, post_name, picture, post_id,description,attending_count,start_time,end_time,event_link,place):
-    p = FBEvents.objects.update_or_create(Location=loc,Location_Name=location_name, Updated_Time=updated_time,Event_Name=post_name, Cover=picture, Event_Id=post_id, Description=description,Attending_Count = attending_count,Start_Time = start_time,End_Time=end_time,Event_Link=event_link,Place=place)[0]
+def add_event(loc,location_name,updated_time, post_name, picture, post_id,description,start_time,end_time,event_link,place):
+    p = FBEvents.objects.update_or_create(Location=loc,Location_Name=location_name, Updated_Time=updated_time,Event_Name=post_name, Cover=picture, Event_Id=post_id, Description=description,Start_Time = start_time,End_Time=end_time,Event_Link=event_link,Place=place)[0]
     p.Location=loc
     p.Location_Name = location_name
-    p.Attending_Count=attending_count
     p.Start_Time = start_time
     p.Updated_Time=updated_time
     p.End_Time=end_time
@@ -228,17 +235,20 @@ def get_FBevents(pageids):
     print ("Starting Tango population script...")
     for pageid in pageids:
         events = get_events(pageid)
-        try:
-
-            d_loc = getexisting_EL()
-        except Exception as e:
-            print ('Passing to next line.Possibly because of no data returned by query', e)
-            pass
-        try:
-            e_id = getexisting_EID()
-        except Exception as e:
-            print ('Passing to next line.Possibly because of no data returned by query', e)
-            pass
-        populate(pageid,events,d_loc,e_id)
+        if events:
+            try:
+    
+                d_loc = getexisting_EL()
+            except Exception as e:
+                print ('Passing to next line.Possibly because of no data returned by query', e)
+                pass
+            try:
+                e_id = getexisting_EID()
+            except Exception as e:
+                print ('Passing to next line.Possibly because of no data returned by query', e)
+                pass
+            populate(pageid,events,d_loc,e_id)
+        else:
+            print("Got empty events from facebook")
     print ('Done!')
     
