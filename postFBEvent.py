@@ -9,7 +9,6 @@ import facebook
 import sys
 from os.path import dirname, join, exists, abspath
 from os import environ
-import environ
 import datetime
 from config_settings import logger, SITE_PKG_PATH, PROJECT_BASE_DIR  # TANGO_LOCATION
 sys.path.append(SITE_PKG_PATH)
@@ -20,7 +19,9 @@ import django
 django.setup()
 from profiles.models import FBEvents  # FBLocation,
 
+
 # Use 12factor inspired environment variables or from a file
+import environ
 env = environ.Env()
 
 # print (str(datetime.date.today()))
