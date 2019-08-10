@@ -44,7 +44,7 @@ class EventsPage(generic.TemplateView):
         context['FutureEvents'] = FBEvents.objects.filter(
             Start_Time__gte=self.edate)
         # context['PastEvents'] =  FBEvents.objects.filter(Start_Time__lt=self.sdate)
-        context['tango_location'] = tango_location
+        context['tango_location'] = TANGO_LOCATION
         return context
 
 # class EventsPage(generic.ListView):

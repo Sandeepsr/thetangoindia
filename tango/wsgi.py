@@ -9,16 +9,22 @@ https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/
 
 import os
 import sys
+BASE_DIRECTORY = os.path.dirname((os.path.realpath(__file__)))
+sys.path.append(BASE_DIRECTORY)
+
 from config_settings import PROJECT_DIR, PROJECT_BASE_DIR, SITE_PKG_PATH, logger
 sys.path.append(SITE_PKG_PATH)
 sys.path.append(PROJECT_DIR)
 sys.path.append(os.path.join(PROJECT_BASE_DIR, 't/tango/src/tango/settings/'))
-from django.conf import settings
-from django.core.wsgi import get_wsgi_application
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "production")
 
+from django.core.wsgi import get_wsgi_application
+
 application = get_wsgi_application()
+
+from django.conf import settings
 
 # Wrap werkzeug debugger if DEBUG is on
 if settings.DEBUG:
