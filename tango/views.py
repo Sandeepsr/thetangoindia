@@ -105,6 +105,12 @@ class TangoMumbaiBTangoConscious(generic.ListView):
     template_name = "Tango-In-Mumbai-BTangoConscious.html"
     #8
 
+class TangoGoaPage(generic.ListView):
+    context_object_name = 'Tango-In-Goa'
+    queryset = TangoCommunityInfo.objects.all()[9]
+    template_name = "Tango-In-Goa.html"
+    #9
+    
 class TangoEssentials(generic.TemplateView):
     template_name = "Tango-Essentials.html"
 

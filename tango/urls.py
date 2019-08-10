@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^Tango-In-Mumbai-BTangoConscious/$', views.TangoMumbaiBTangoConscious.as_view(), name='Tango-In-Mumbai-BTangoConscious'),
     url(r'^Past-Events/$', views.PastEventsPage.as_view(), name='Past-Events'),
     url(r'^legal/$', views.LegalTC.as_view(), name='legal'),
+    url(r'^Tango-In-Goa/$', views.TangoGoaPage.as_view(), name='Tango-In-Goa'),
     
     
 ]
