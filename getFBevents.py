@@ -6,7 +6,7 @@ Originally created by Mitchell Stewart.
 
 import facebook
 import requests
-from config_settings import PROJECT_BASE_DIR, logger, TANGO_LOCATION
+from config_settings import SITE_PKG_PATH, PROJECT_BASE_DIR, logger, TANGO_LOCATION
 import sys
 import os
 from os.path import join, exists
@@ -14,8 +14,9 @@ import datetime
 from os import environ
 import environ
 
-sys.path.append()
+sys.path.append(SITE_PKG_PATH)
 environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango.settings.production')
+
 import django
 django.setup()
 from profiles.models import FBLocation, FBEvents
