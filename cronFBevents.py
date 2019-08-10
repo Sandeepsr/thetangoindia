@@ -1,7 +1,8 @@
-from getFBevents import get_fb_events
 import sys
-from config import logger, PAGE_IDS, SITE_PKG_PATH
+from config_settings import logger, PAGE_IDS, SITE_PKG_PATH
 sys.path.append(SITE_PKG_PATH)
+# below import needed after append
+from getFBevents import get_fb_events
 
 
 def fb_event_cron():

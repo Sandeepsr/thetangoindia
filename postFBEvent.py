@@ -4,20 +4,21 @@ Originally created by Mitchell Stewart.
 <https://gist.github.com/mylsb/10294040>
 """
 
-from profiles.models import FBEvents  # FBLocation,
 # from django.core.management import execute_from_command_line
-import django
 import facebook
 import sys
 from os.path import dirname, join, exists, abspath
 from os import environ
 import environ
 import datetime
-from config import logger, SITE_PKG_PATH, PROJECT_BASE_DIR  # TANGO_LOCATION
+from config_settings import logger, SITE_PKG_PATH, PROJECT_BASE_DIR  # TANGO_LOCATION
 sys.path.append(SITE_PKG_PATH)
 environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango.settings.production')
 
+# import after sys. path append
+import django
 django.setup()
+from profiles.models import FBEvents  # FBLocation,
 
 # Use 12factor inspired environment variables or from a file
 env = environ.Env()

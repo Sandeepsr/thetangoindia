@@ -11,7 +11,7 @@ from django.contrib import messages
 import environ
 from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
-from . config import PROJECT_BASE_DIR
+from config_settings import PROJECT_BASE_DIR
 # Build paths inside the project like this: join(BASE_DIR, "directory")
 BASE_DIR = dirname(dirname(dirname(__file__)))
 STATICFILES_DIRS = [join(BASE_DIR, 'static')]

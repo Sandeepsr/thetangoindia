@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from config import logger, SITE_PKG_PATH
+from config_settings import logger, SITE_PKG_PATH
 sys.path.append(SITE_PKG_PATH)
 
 
