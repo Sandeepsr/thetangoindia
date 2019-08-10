@@ -12,7 +12,6 @@ import environ
 from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
 from config_settings import PROJECT_BASE_DIR
-# Build paths inside the project like this: join(BASE_DIR, "directory")
 BASE_DIR = dirname(dirname(dirname(__file__)))
 STATICFILES_DIRS = [join(BASE_DIR, 'static')]
 MEDIA_ROOT = join(BASE_DIR, 'media')
@@ -48,6 +47,7 @@ TEMPLATES = [
 ]
 
 # Use 12factor inspired environment variables or from a file
+import environ
 env = environ.Env()
 
 # Ideally move env file should be outside the git repo

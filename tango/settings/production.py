@@ -4,10 +4,11 @@ from os.path import dirname, join
 import logging.config
 import sys
 import os
-from config_settings import PROJECT_DIR
+from config_settings import PROJECT_DIR, SITE_PKG_PATH
 sys.path.append(PROJECT_DIR)
+sys.path.append(SITE_PKG_PATH)
 sys.path.append(os.path.join(PROJECT_DIR, 'tango/settings/'))
-from base import BASE_DIR, TEMPLATES          # NOQA
+from base import *  # NOQA
 
 # For security and performance reasons, DEBUG is turned off
 DEBUG = False
