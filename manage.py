@@ -9,7 +9,7 @@ if __name__ == "__main__":
     # CHANGED manage.py will use development settings by
     # default. Change the DJANGO_SETTINGS_MODULE environment variable
     # for using the environment specific settings file.
-    logger.info(f"Executiong the command line: execute_from_command_line")
+    logger.info("Executiong the command line: execute_from_command_line")
     os.environ.setdefault("DJANGO_SETTINGS_MODULE",
                           "tango.settings.production")
 

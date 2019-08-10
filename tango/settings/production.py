@@ -3,9 +3,9 @@
 import logging.config
 import sys
 import os
-from .config import PRJOJECT_DIR
-sys.path.append(PRJOJECT_DIR)
-sys.path.append(os.path.join(PRJOJECT_DIR, 'tango/settings/'))
+from config import PROJECT_DIR
+sys.path.append(PROJECT_DIR)
+sys.path.append(os.path.join(PROJECT_DIR, 'tango/settings/'))
 from base import *             # NOQA
 
 # For security and performance reasons, DEBUG is turned off

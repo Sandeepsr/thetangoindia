@@ -30,7 +30,7 @@ today = datetime.date.today()
 first = today.replace(day=1)
 lastmonth = first - datetime.timedelta(days=33)
 sincet = lastmonth.strftime("%Y-%m-%d")
-logger.info(f"Stat date of script: {today}")
+logger.info("Stat date of script: {}".format(today))
 
 # Use 12factor inspired environment variables or from a file
 env = environ.Env()
@@ -40,10 +40,10 @@ env = environ.Env()
 ENV_FILE = join(os.path.join(PROJECT_BASE_DIR, 't', 'secrets.env'))
 
 if exists(ENV_FILE):
-    logger.error(f"Found the env file")
+    logger.error("Found the env file")
     environ.Env.read_env(str(ENV_FILE))
 else:
-    logger.error(f"Failed to find the env file")
+    logger.error("Failed to find the env file")
 
 ACCESS_TOKEN = env('ACCESS_TOKEN')
 
@@ -61,7 +61,7 @@ def user_friendly_time(time_str):
         format = "%a %b %d %H:%M:%S %Y"
         return uf_time.strftime(format)
     except Exception as err:
-        logger.exception(f"Could not convert to user_friendly_time {err}")
+        logger.exception("Could not convert to user_friendly_time {}".format(err))
         return time_str
 
 
@@ -89,7 +89,7 @@ def get_events(user):
                 break
         return events
     except Exception as e:
-        logger.exception(f"Failure getting event data : {e}")
+        logger.exception("Failure getting event data : {}".format(e))
 
 
 def get_existing_events():
@@ -101,7 +101,7 @@ def get_existing_events():
         return dpost_id
     except Exception as e:
         logger.exception(
-            f'Passing to next item. Possibly because of no data returned by query: {e}')
+            'Passing to next item. Possibly because of no data returned by query: {}'.format(e))
 
 
 def get_existing_event_ids():
@@ -113,7 +113,7 @@ def get_existing_event_ids():
         return e_id
     except Exception as e:
         logger.exception(
-            f'Passing to next item. Possibly because of no data returned by query: {e}')
+            'Passing to next item. Possibly because of no data returned by query: {}'.format(e))
 
 
 def delete_event(Event_Id):
@@ -121,7 +121,7 @@ def delete_event(Event_Id):
         FBEvents.objects.filter(Event_Id=Event_Id).delete()
     except Exception as e:
         logger.exception(
-            f'delete_event: Passing to next line. Possibly because of no data returned by query: {e}')
+            'delete_event: Passing to next line. Possibly because of no data returned by query: {}'.format(e))
 
 
 def post_events(location_name, post_name, picture, description, start_time, end_time, event_link, place):
@@ -144,19 +144,19 @@ def post_events(location_name, post_name, picture, description, start_time, end_
     try:
         graph_tiin.put_object(parent_object=tango_in_india,
                               connection_name='feed', message=msg, link=event_link)
-        logger.warning(f"Posted a new event in tango_in_india: {event_link}")
+        logger.warning("Posted a new event in tango_in_india: {}".format(event_link))
     except Exception as e:
         logger.exception(
-            f"Exception while posting new event to tango_in_india FB page: {location_name}, {event_link}, {e}")
+            "Exception while posting new event to tango_in_india FB page: {}, {}, {}".format(location_name, event_link, e))
 
     try:
         graph.put_object(parent_object=thetangoindia_fb_grp,
                          connection_name='feed', message=msg, link=event_link)
         logger.warning(
-            f"Posted a new event in tango_in_india_fb_group: {event_link}")
+            "Posted a new event in tango_in_india_fb_group: {}".format(event_link))
     except Exception as e:
         logger.exception(
-            f"Exception while posting new event to thetangoindia_fb_grp: {location_name}, {event_link}, {e}")
+            "Exception while posting new event to thetangoindia_fb_grp: {}, {}, {}".format(location_name, event_link, e))
 
 
 def add_event_helper(pageid, events, e_id, location_get, d_loc=None, loc_name=None):
@@ -254,12 +254,12 @@ def get_location(name):
         return c
     except Exception as e:
         logger.warning(
-            f'Adding this new location {name} as no data returned by query: {e}')
+            'Adding this new location {} as no data returned by query: {}'.format(name, e))
         return add_location(name)
 
 
 def get_fb_events(pageids):
-    logger.warning(f"Starting Tango event gathering script...")
+    logger.warning("Starting Tango event gathering script...")
     for pageid in pageids:
         events = get_events(pageid)
         if events:
@@ -267,12 +267,12 @@ def get_fb_events(pageids):
                 d_loc = get_existing_events()
             except Exception as e:
                 logger.warning(
-                    f'Passing to next event. Possibly because of no data returned by query: {e}')
+                    'Passing to next event. Possibly because of no data returned by query: {}'.format(e))
             try:
                 e_id = get_existing_event_ids()
             except Exception as e:
                 logger.warning(
-                    f'Passing to next event. Possibly because of no data returned by query: {e}')
+                    'Passing to next event. Possibly because of no data returned by query: {}'.format(e))
             populate(pageid, events, d_loc, e_id)
         else:
             logger.error("Got empty events list from facebook graph api")
