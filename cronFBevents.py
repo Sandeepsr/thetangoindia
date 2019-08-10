@@ -1,19 +1,20 @@
+from getFBevents import get_fb_events
 import sys
-sys.path.append('/home/tango/t/py34/lib/python3.4/site-packages/')
+from config import logger, PAGE_IDS, SITE_PKG_PATH
+sys.path.append(SITE_PKG_PATH)
 
-from getFBevents import get_FBevents
 
-pageids = ['264587550321500','527770257327317','291047664345550','1636178923304872','100006844149398','197346010313291','305372292817505','107857822580692','1513486182213415','7213847061','1099207956812482']
-#pageids = [264587550321500,527770257327317,291047664345550,1636178923304872,100006844149398,197346010313291,305372292817505,107857822580692, ,1513486182213415 BTangoConscious ,7213847061 - newdelhitango]
+def fb_event_cron():
+    """Gets Events from facebook and run cron
 
-def fbeventcron():
+    :return: list of events
+    :rtype: list
+    """
     try:
-      return get_FBevents(pageids)
-    except Exception as E:
-        print (E)
-
-fbeventcron()
+        return get_fb_events(PAGE_IDS)
+    except Exception as err:
+        logger.exception(f"Error getting FB events : {err}")
 
 
-pageids_dict = {'264587550321500':'Hyderabad', '527770257327317': 'Bangalore', '1636178923304872':'Mumbai', '100006844149398':'Chennai', '197346010313291': 'Auroville-Pondichery', '305372292817505':'Pune',
-'107857822580692' : 'Mumbai Tango', '1099207956812482': 'Bangalore - Elcabeco' , '7213847061':'New Delhi Tango'}
+# call the cron job
+fb_event_cron()

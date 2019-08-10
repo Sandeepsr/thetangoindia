@@ -7,17 +7,19 @@ For more information on this file, see
 https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/
 """
 
-import os ,sys
-sys.path.append('/home/tango/t/py34/lib/python3.4/site-packages/')
-sys.path.append('/home/tango/t/tango/src/')
-sys.path.append('/home/tango/t/tango/src/tango/settings/')
+from django.conf import settings
+from django.core.wsgi import get_wsgi_application
+import os
+import sys
+from .config import PROJECT_DIR, PROJECT_BASE_DIR, SITE_PKG_PATH, logger
+sys.path.append(SITE_PKG_PATH)
+sys.path.append(PROJECT_DIR)
+sys.path.append(os.path.join(PROJECT_BASE_DIR, 't/tango/src/tango/settings/'))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "production")
 
-from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 # Wrap werkzeug debugger if DEBUG is on
-from django.conf import settings
 if settings.DEBUG:
     try:
         import django.views.debug
@@ -30,4 +32,4 @@ if settings.DEBUG:
         django.views.debug.technical_500_response = null_technical_500_response
         application = DebuggedApplication(application, evalex=True)
     except ImportError:
-        pass
+        logger.exception(f"Exception while running on DEBUG mode.")
