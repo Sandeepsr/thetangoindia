@@ -1,17 +1,20 @@
 # In production set the environment variable like this:
 #    DJANGO_SETTINGS_MODULE=tango.settings.production
-import sys
-sys.path.append('/home/tango/t/tango/src/')
-sys.path.append('/home/tango/t/tango/src/tango/settings/')
-from base import *             # NOQA
 import logging.config
+import sys
+import os
+from .config import PRJOJECT_DIR
+sys.path.append(PRJOJECT_DIR)
+sys.path.append(os.path.join(PRJOJECT_DIR, 'tango/settings/'))
+from base import *             # NOQA
 
 # For security and performance reasons, DEBUG is turned off
 DEBUG = False
 TEMPLATE_DEBUG = False
 
 # Must mention ALLOWED_HOSTS in production!
-ALLOWED_HOSTS = ["thetangoindia.com","thetangoindia.in", "thetangoindia.cloudapp.net","localhost","10.0.0.4","0.0.0.0"]
+ALLOWED_HOSTS = ["thetangoindia.com", "thetangoindia.in",
+                 "thetangoindia.cloudapp.net", "localhost", "10.0.0.4", "0.0.0.0"]
 
 # Cache the templates in memory for speed-up
 loaders = [
@@ -23,10 +26,6 @@ loaders = [
 
 TEMPLATES[0]['OPTIONS'].update({"loaders": loaders})
 TEMPLATES[0].update({"APP_DIRS": False})
-
-# Define STATIC_ROOT for the collectstatic command
-#STATIC_ROOT = join(BASE_DIR, '..', 'site', 'static')
-#STATIC_ROOT = "/home/tango/t/tango/site/static"
 
 
 # Log everything to the logs directory at the top
@@ -73,8 +72,4 @@ LOGGING = {
 }
 
 
-
 logging.config.dictConfig(LOGGING)
-
-
-

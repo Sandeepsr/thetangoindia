@@ -7,9 +7,11 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
+from django.contrib import messages
+import environ
 from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
-
+from . config import PROJECT_BASE_DIR
 # Build paths inside the project like this: join(BASE_DIR, "directory")
 BASE_DIR = dirname(dirname(dirname(__file__)))
 STATICFILES_DIRS = [join(BASE_DIR, 'static')]
@@ -17,7 +19,7 @@ MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 
 PROJECT_DIR = dirname(dirname(__file__))
-#STATIC_ROOT = join(PROJECT_DIR, 'static')
+# STATIC_ROOT = join(PROJECT_DIR, 'static')
 STATIC_ROOT = "/var/www/static"
 
 # Use Django templates using the new Django 1.8 TEMPLATES settings
@@ -46,25 +48,23 @@ TEMPLATES = [
 ]
 
 # Use 12factor inspired environment variables or from a file
-import environ
 env = environ.Env()
 
 # Ideally move env file should be outside the git repo
 # i.e. BASE_DIR.parent.parent
-#env_file = join(dirname(__file__), 'local.env')
-#if exists(env_file):
- #   environ.Env.read_env(str(env_file))
+# env_file = join(dirname(__file__), 'local.env')
+# if exists(env_file):
+#   environ.Env.read_env(str(env_file))
 
 
 # Ideally move env file should be outside the git repo
 # i.e. BASE_DIR.parent.parent
-env_file = join('/home/tango/t/', 'secrets.env')
+env_file = join(PROJECT_BASE_DIR, 't', 'secrets.env')
 
 if exists(env_file):
     environ.Env.read_env(str(env_file))
 
 
-#ACCESS_TOKEN = env('ACCESS_TOKEN')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
@@ -148,7 +148,6 @@ ALLOWED_HOSTS = []
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # For Bootstrap 3, change error alert to 'danger'
-from django.contrib import messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
