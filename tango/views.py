@@ -2,7 +2,7 @@ from django.views import generic
 from datetime import date, datetime, timedelta
 from profiles.models import Tango_Events, TangoCommunityInfo, FBEvents
 import django_tables2 as tables
-from .config import TANGO_LOCATION
+from config import TANGO_LOCATION
 
 
 class HomePage(generic.TemplateView):

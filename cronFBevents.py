@@ -13,7 +13,7 @@ def fb_event_cron():
     try:
         return get_fb_events(PAGE_IDS)
     except Exception as err:
-        logger.exception(f"Error getting FB events : {err}")
+        logger.exception("Error getting FB events :{}".format(err))
 
 
 # call the cron job

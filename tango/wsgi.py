@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 import os
 import sys
-from .config import PROJECT_DIR, PROJECT_BASE_DIR, SITE_PKG_PATH, logger
+from config import PROJECT_DIR, PROJECT_BASE_DIR, SITE_PKG_PATH, logger
 sys.path.append(SITE_PKG_PATH)
 sys.path.append(PROJECT_DIR)
 sys.path.append(os.path.join(PROJECT_BASE_DIR, 't/tango/src/tango/settings/'))
@@ -32,4 +32,4 @@ if settings.DEBUG:
         django.views.debug.technical_500_response = null_technical_500_response
         application = DebuggedApplication(application, evalex=True)
     except ImportError:
-        logger.exception(f"Exception while running on DEBUG mode.")
+        logger.exception("Exception while running on DEBUG mode.")

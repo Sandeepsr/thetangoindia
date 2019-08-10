@@ -27,7 +27,7 @@ today = datetime.date.today()
 first = today.replace(day=1)
 lastmonth = first - datetime.timedelta(days=63)
 sincet = lastmonth.strftime("%Y-%m-%d")
-logger.info(f"Date today: {today}")
+logger.info("Date today: {}".format(today))
 
 
 # Ideally move env file should be outside the git repo
