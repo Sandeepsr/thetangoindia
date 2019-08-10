@@ -4,8 +4,6 @@ Originally created by Mitchell Stewart.
 <https://gist.github.com/mylsb/10294040>
 """
 
-from profiles.models import FBLocation, FBEvents
-import django
 import facebook
 import requests
 from config_settings import PROJECT_BASE_DIR, logger, TANGO_LOCATION
@@ -18,8 +16,9 @@ import environ
 
 sys.path.append()
 environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango.settings.production')
-
+import django
 django.setup()
+from profiles.models import FBLocation, FBEvents
 
 
 # You'll need an access token here to do anything.  You can get a temporary one
