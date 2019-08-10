@@ -7,14 +7,15 @@ For more information on this file, see
 https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/
 """
 
-from django.conf import settings
-from django.core.wsgi import get_wsgi_application
 import os
 import sys
-from config import PROJECT_DIR, PROJECT_BASE_DIR, SITE_PKG_PATH, logger
+from config_settings import PROJECT_DIR, PROJECT_BASE_DIR, SITE_PKG_PATH, logger
 sys.path.append(SITE_PKG_PATH)
 sys.path.append(PROJECT_DIR)
 sys.path.append(os.path.join(PROJECT_BASE_DIR, 't/tango/src/tango/settings/'))
+from django.conf import settings
+from django.core.wsgi import get_wsgi_application
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "production")
 
 application = get_wsgi_application()
@@ -33,3 +34,5 @@ if settings.DEBUG:
         application = DebuggedApplication(application, evalex=True)
     except ImportError:
         logger.exception("Exception while running on DEBUG mode.")
+    except Exception as e:
+        logger.exception("Exception while running on DEBUG mode: {}".format(e))

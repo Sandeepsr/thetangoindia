@@ -1,6 +1,6 @@
 import sys
 import os
-from config import PROJECT_BASE_DIR, PROJECT_DIR
+from config_settings import PROJECT_BASE_DIR, PROJECT_DIR
 sys.path.append(os.path.join(PROJECT_BASE_DIR, 't/py34/lib/python3.4/site-packages/')
 sys.path.append(PROJECT_BASE_DIR, 't/tango/src/profiles/')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango.settings.development')

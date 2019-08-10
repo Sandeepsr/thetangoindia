@@ -8,7 +8,7 @@ from profiles.models import FBLocation, FBEvents
 import django
 import facebook
 import requests
-from config import PROJECT_BASE_DIR, logger, TANGO_LOCATION
+from config_settings import PROJECT_BASE_DIR, logger, TANGO_LOCATION
 import sys
 import os
 from os.path import join, exists

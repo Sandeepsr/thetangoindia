@@ -1,6 +1,6 @@
 import requests
 import sys
-from config import logger
+from config_settings import logger
 
 
 # See http://www.unixtimestamp.com/ to generate Unix timestamps online
